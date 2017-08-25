@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ForeignExchange.Views.MainView">
+
+    <!-- Esta propiedad permite los margenes en diferentes plataformas mediante XAML-->
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness"  
+                    Android="10,30,10,30"
+                    iOS="20,30,20,30"
+                    WinPhone="10,30,10,30"/>
+    </ContentPage.Padding>
+   
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                
+                <!-- Head -->
+                <Label FontAttributes="Bold"
+                       FontSize="Large"
+                       HorizontalOptions="Center" 
+                       Text="{StaticResource CompanyName}"
+                       VerticalOptions="Center"/>
+                
+                <Label FontSize="Medium"
+                       HorizontalOptions="Center"
+                       Text="{StaticResource CompanySlogan}"
+                       VerticalOptions="Center"/>
+                
+                <Label/>
+                <Label FontAttributes="Bold" 
+                       HorizontalOptions="Center"
+                       Text="{StaticResource NameApp}"
+                       VerticalOptions="Center"/>
+                <!--End Head -->
+
+                <!-- Body -->
+                <Grid>
+                    
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width=".4*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width=".3*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Column="0"
+                           Grid.Row="0"
+                           HorizontalOptions="StartAndExpand"
+                           VerticalOptions="Center"
+                           Text="Amount:" />
+
+                    <Entry Grid.Column="1"
+                           Grid.Row="0"
+                           Grid.ColumnSpan="2"
+                           HorizontalOptions="FillAndExpand"
+                           IsEnabled="{Binding IsEnabled}"
+                           Keyboard="Numeric"
+                           Placeholder="Enter amout to convert...!!!"
+                           Text="{Binding Amount, Mode=TwoWay}"
+                           VerticalOptions="Center"/>
+
+                    <Label Grid.Column="0"
+                           Grid.Row="1"
+                           HorizontalOptions="StartAndExpand"
+                           Text="Source Rate:"
+                           VerticalOptions="Center"/>
+
+                    <Picker Grid.Column="1"
+                            Grid.Row="1"
+                            HorizontalOptions="FillAndExpand"
+                            ItemDisplayBinding="{Binding Name}"
+                            ItemsSource="{Binding Rates}"
+                            SelectedItem="{Binding SourceRate, Mode=TwoWay}"
+                            Title="Select source rate...!!!"
+                            VerticalOptions="Center"/>
+                    
+                    <Label Grid.Column="0"
+                           Grid.Row="2"
+                           HorizontalOptions="StartAndExpand"
+                           Text="Target Rate:"
+                           VerticalOptions="Center"/>
+
+                    <Picker Grid.Column="1"
+                            Grid.Row="2"
+                            HorizontalOptions="FillAndExpand"
+                            ItemDisplayBinding="{Binding Name}"
+                            ItemsSource="{Binding Rates}"
+                            SelectedItem="{Binding TargetRate, Mode=TwoWay}"
+                            Title="Select target source...!!!"
+                            VerticalOptions="Center"/>
+
+                    <Image Grid.Column="2"
+                           Grid.Row="1"
+                           Grid.RowSpan="2"
+                           HorizontalOptions="Center"
+                           Source="ico_switch.png"
+                           VerticalOptions="Center"
+                           WidthRequest="70">
+
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding SwitchCommand}"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    
+                </Grid>
+                <!-- Body -->
+
+                <!-- Foot -->
+                <ActivityIndicator IsRunning="{Binding IsRunning}"/>
+
+                <StackLayout Orientation="Horizontal"
+                             VerticalOptions="Center"
+                             HorizontalOptions="Center">
+                    
+                    <Button Command="{Binding ConvertCommand}" 
+                            IsEnabled="{Binding IsEnabled}" 
+                            Text="Convert"/>
+                    
+                    <Button Command="{Binding ClearCommand}" 
+                            IsEnabled="{Binding isEnabled}" 
+                            Text="Clear"/>
+                    
+                </StackLayout>
+
+                <Label BackgroundColor="Gray" 
+                       FontSize="Medium"
+                       HorizontalTextAlignment="Center"
+                       Text="Ready to convert...!!!"
+                       VerticalOptions="FillAndExpand"
+                       VerticalTextAlignment="Center"/>
+                <!-- End Foot -->
+                
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
