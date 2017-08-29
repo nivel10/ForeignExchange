@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:i18n="clr-namespace:ForeignExchange.Helpers;assembly=ForeignExchange"
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
              x:Class="ForeignExchange.Views.MainView"
              Title="Main View">
@@ -30,9 +31,14 @@
                        VerticalOptions="Center"/>
                 
                 <Label/>
-                <Label FontAttributes="Bold" 
+                
+                <!--<Label FontAttributes="Bold" 
                        HorizontalOptions="Center"
                        Text="{StaticResource NameApp}"
+                       VerticalOptions="Center"/>-->
+                <Label FontAttributes="Bold" 
+                       HorizontalOptions="Center"
+                       Text="{i18n:Translate Title}"
                        VerticalOptions="Center"/>
                 <!--End Head -->
 
@@ -50,13 +56,18 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
+                    <!--<Label Grid.Column="0"
+                           Grid.Row="0"
+                           HorizontalOptions="StartAndExpand"
+                           VerticalOptions="Center"
+                           Text="Amount:" />-->
                     <Label Grid.Column="0"
                            Grid.Row="0"
                            HorizontalOptions="StartAndExpand"
                            VerticalOptions="Center"
-                           Text="Amount:" />
-
-                    <Entry Grid.Column="1"
+                           Text="{i18n:Translate LabelAmount}" />
+                    
+                    <!--<Entry Grid.Column="1"
                            Grid.Row="0"
                            Grid.ColumnSpan="2"
                            HorizontalOptions="FillAndExpand"
@@ -64,15 +75,29 @@
                            Keyboard="Numeric"
                            Placeholder="Enter amout to convert...!!!"
                            Text="{Binding Amount, Mode=TwoWay}"
+                           VerticalOptions="Center"/>-->
+                    <Entry Grid.Column="1"
+                           Grid.Row="0"
+                           Grid.ColumnSpan="2"
+                           HorizontalOptions="FillAndExpand"
+                           IsEnabled="{Binding IsEnabled}"
+                           Keyboard="Numeric"
+                           Placeholder="{i18n:Translate PlaceHolrderAmount}"
+                           Text="{Binding Amount, Mode=TwoWay}"
                            VerticalOptions="Center"/>
-
-                    <Label Grid.Column="0"
+                    
+                    <!--<Label Grid.Column="0"
                            Grid.Row="1"
                            HorizontalOptions="StartAndExpand"
                            Text="Source Rate:"
+                           VerticalOptions="Center"/>-->
+                    <Label Grid.Column="0"
+                           Grid.Row="1"
+                           HorizontalOptions="StartAndExpand"
+                           Text="{i18n:Translate LabelSourceRate}"
                            VerticalOptions="Center"/>
-
-                    <Picker Grid.Column="1"
+                    
+                    <!--<Picker Grid.Column="1"
                             Grid.Row="1"
                             HorizontalOptions="FillAndExpand"
                             ItemDisplayBinding="{Binding Name}"
@@ -80,15 +105,29 @@
                             IsEnabled="{Binding IsEnabled}"
                             SelectedItem="{Binding SourceRate, Mode=TwoWay}"
                             Title="Select source rate...!!!"
+                            VerticalOptions="Center"/>-->
+                    <Picker Grid.Column="1"
+                            Grid.Row="1"
+                            HorizontalOptions="FillAndExpand"
+                            ItemDisplayBinding="{Binding Name}"
+                            ItemsSource="{Binding Rates}"
+                            IsEnabled="{Binding IsEnabled}"
+                            SelectedItem="{Binding SourceRate, Mode=TwoWay}"
+                            Title="{i18n:Translate TitleSourceRate}"
                             VerticalOptions="Center"/>
                     
-                    <Label Grid.Column="0"
+                    <!--<Label Grid.Column="0"
                            Grid.Row="2"
                            HorizontalOptions="StartAndExpand"
                            Text="Target Rate:"
+                           VerticalOptions="Center"/>-->
+                    <Label Grid.Column="0"
+                           Grid.Row="2"
+                           HorizontalOptions="StartAndExpand"
+                           Text="{i18n:Translate LabelTargetRate}"
                            VerticalOptions="Center"/>
-
-                    <Picker Grid.Column="1"
+                    
+                    <!--<Picker Grid.Column="1"
                             Grid.Row="2"
                             HorizontalOptions="FillAndExpand"
                             ItemDisplayBinding="{Binding Name}"
@@ -96,6 +135,15 @@
                             IsEnabled="{Binding IsEnabled}"
                             SelectedItem="{Binding TargetRate, Mode=TwoWay}"
                             Title="Select target source...!!!"
+                            VerticalOptions="Center"/>-->
+                    <Picker Grid.Column="1"
+                            Grid.Row="2"
+                            HorizontalOptions="FillAndExpand"
+                            ItemDisplayBinding="{Binding Name}"
+                            ItemsSource="{Binding Rates}"
+                            IsEnabled="{Binding IsEnabled}"
+                            SelectedItem="{Binding TargetRate, Mode=TwoWay}"
+                            Title="{i18n:Translate TitleTargetRate}"
                             VerticalOptions="Center"/>
                     
                     <Image Grid.Column="2"
@@ -119,14 +167,20 @@
                              VerticalOptions="Center"
                              HorizontalOptions="Center">
                     
+                    <!--<Button Command="{Binding ConvertCommand}" 
+                            IsEnabled="{Binding IsEnabled}" 
+                            Text="Convert"/>-->
                     <Button Command="{Binding ConvertCommand}" 
                             IsEnabled="{Binding IsEnabled}" 
-                            Text="Convert"/>
+                            Text="{i18n:Translate CommandConvert}"/>
                     
+                    <!--<Button Command="{Binding ClearCommand}" 
+                            IsEnabled="{Binding IsEnabled}" 
+                            Text="Clear"/>-->
                     <Button Command="{Binding ClearCommand}" 
                             IsEnabled="{Binding IsEnabled}" 
-                            Text="Clear"/>
-                    
+                            Text="{i18n:Translate ComandClear}"/>
+
                 </StackLayout>
 
                 <Label BackgroundColor="Gray" 
@@ -135,6 +189,15 @@
                        Text="{Binding Result, Mode=TwoWay}"
                        VerticalOptions="FillAndExpand"
                        VerticalTextAlignment="Center"/>
+                <!--<Label BackgroundColor="Gray" 
+                       FontSize="Medium"
+                       HorizontalTextAlignment="Center"
+                       Text="{i18n:Translate TitleLoadRate}"
+                       VerticalOptions="FillAndExpand"
+                       VerticalTextAlignment="Center"/>-->
+
+                <Label HorizontalOptions="Center"
+                       Text="{Binding Status, Mode=TwoWay}"/>
                 <!-- End Foot -->
                 
             </StackLayout>

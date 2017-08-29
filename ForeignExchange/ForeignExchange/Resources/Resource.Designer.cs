@@ -89,11 +89,65 @@ namespace ForeignExchange.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Clear.
+        /// </summary>
+        public static string ComandClear {
+            get {
+                return ResourceManager.GetString("ComandClear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Convert.
+        /// </summary>
+        public static string CommandConvert {
+            get {
+                return ResourceManager.GetString("CommandConvert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Error.
         /// </summary>
         public static string Error {
             get {
                 return ResourceManager.GetString("Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Amount:.
+        /// </summary>
+        public static string LabelAmount {
+            get {
+                return ResourceManager.GetString("LabelAmount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Source Rate:.
+        /// </summary>
+        public static string LabelSourceRate {
+            get {
+                return ResourceManager.GetString("LabelSourceRate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Target Rate:.
+        /// </summary>
+        public static string LabelTargetRate {
+            get {
+                return ResourceManager.GetString("LabelTargetRate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Enter amout to convert...!!!.
+        /// </summary>
+        public static string PlaceHolrderAmount {
+            get {
+                return ResourceManager.GetString("PlaceHolrderAmount", resourceCulture);
             }
         }
         
@@ -121,6 +175,96 @@ namespace ForeignExchange.Resources {
         public static string Title {
             get {
                 return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Please, check your connection internet...!!!.
+        /// </summary>
+        public static string TitleAccessInternet {
+            get {
+                return ResourceManager.GetString("TitleAccessInternet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a in.
+        /// </summary>
+        public static string TitleIn {
+            get {
+                return ResourceManager.GetString("TitleIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a is equal to:.
+        /// </summary>
+        public static string TitleIsEqual {
+            get {
+                return ResourceManager.GetString("TitleIsEqual", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Load rates, plase wait...!!!.
+        /// </summary>
+        public static string TitleLoadRate {
+            get {
+                return ResourceManager.GetString("TitleLoadRate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Ready to convert...!!!.
+        /// </summary>
+        public static string TitleReadyConvert {
+            get {
+                return ResourceManager.GetString("TitleReadyConvert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Please, check your internet settings...!!!.
+        /// </summary>
+        public static string TitleSettingsInternet {
+            get {
+                return ResourceManager.GetString("TitleSettingsInternet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Select source rate...!!!.
+        /// </summary>
+        public static string TitleSourceRate {
+            get {
+                return ResourceManager.GetString("TitleSourceRate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Rate loaded from internet...!!!.
+        /// </summary>
+        public static string TitleStatusInternet {
+            get {
+                return ResourceManager.GetString("TitleStatusInternet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Select target source...!!!.
+        /// </summary>
+        public static string TitleTargetRate {
+            get {
+                return ResourceManager.GetString("TitleTargetRate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a The amount:.
+        /// </summary>
+        public static string TitleTheAmount {
+            get {
+                return ResourceManager.GetString("TitleTheAmount", resourceCulture);
             }
         }
     }

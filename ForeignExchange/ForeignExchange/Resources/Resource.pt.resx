@@ -126,8 +126,26 @@
   <data name="AmountValidation" xml:space="preserve">
     <value>Você deve inserir um valor em quantidade...!!!</value>
   </data>
+  <data name="ComandClear" xml:space="preserve">
+    <value>limpar</value>
+  </data>
+  <data name="CommandConvert" xml:space="preserve">
+    <value>Mudança</value>
+  </data>
   <data name="Error" xml:space="preserve">
     <value>Erro</value>
+  </data>
+  <data name="LabelAmount" xml:space="preserve">
+    <value>Quantidade:</value>
+  </data>
+  <data name="LabelSourceRate" xml:space="preserve">
+    <value>Fonte de taxa:</value>
+  </data>
+  <data name="LabelTargetRate" xml:space="preserve">
+    <value>Taxa de Destino:</value>
+  </data>
+  <data name="PlaceHolrderAmount" xml:space="preserve">
+    <value>Digite o valor para converter ... !!!</value>
   </data>
   <data name="SourceRateValidation" xml:space="preserve">
     <value>Selecione a taxa de origem ... !!!</value>
@@ -137,5 +155,35 @@
   </data>
   <data name="Title" xml:space="preserve">
     <value>Câmbio</value>
+  </data>
+  <data name="TitleAccessInternet" xml:space="preserve">
+    <value>Por favor, verifique sua conexão de internet ... !!!</value>
+  </data>
+  <data name="TitleIn" xml:space="preserve">
+    <value>em</value>
+  </data>
+  <data name="TitleIsEqual" xml:space="preserve">
+    <value>é igual a:</value>
+  </data>
+  <data name="TitleLoadRate" xml:space="preserve">
+    <value>Taxas de carregamento, aguarde ... !!!</value>
+  </data>
+  <data name="TitleReadyConvert" xml:space="preserve">
+    <value>Pronto para converter ... !!!</value>
+  </data>
+  <data name="TitleSettingsInternet" xml:space="preserve">
+    <value>Por favor, verifique suas configurações de internet ... !!!</value>
+  </data>
+  <data name="TitleSourceRate" xml:space="preserve">
+    <value>Selecione a taxa de origem ... !!!</value>
+  </data>
+  <data name="TitleStatusInternet" xml:space="preserve">
+    <value>Taxa carregada da internet...!!!</value>
+  </data>
+  <data name="TitleTargetRate" xml:space="preserve">
+    <value>Selecione a taxa de destino ... !!!</value>
+  </data>
+  <data name="TitleTheAmount" xml:space="preserve">
+    <value>O valor:</value>
   </data>
 </root>

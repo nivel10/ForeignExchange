@@ -1,8 +1,11 @@
 ﻿namespace ForeignExchange.Models
 {
+    using SQLite.Net.Attributes;
 
     public class Rate
     {
+        //  Notacion para definr la clave primaria del SQLite   \\
+        [PrimaryKey]
         public int RateId
         {
             get;
@@ -25,6 +28,12 @@
         {
             get;
             set;
+        }
+
+        //  Este metodo (Metodo sobre escritura) se coloca para que retorne la clave principal de la clase  \\
+        public override int GetHashCode()
+        {
+            return RateId;
         }
     }
 }

@@ -25,6 +25,7 @@
         private Rate _targetRate;
         private ApiService apiService;
         private DialogService dialogService;
+        private string _status;
 
         #endregion Attributes
 
@@ -167,6 +168,22 @@
             }
         }
 
+        public string Status
+        {
+            get
+            {
+                return _status;
+            }
+            set
+            {
+                if (value != _status)
+                {
+                    _status = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Status)));
+                }
+            }
+        }
+
         #endregion Properties
 
         #region Constructor
@@ -178,14 +195,19 @@
             dialogService = new DialogService();
 
             //  Carga variables locales \\
-            _resultReady = "Ready to convert...!!!";
-            _resultLoadRate = "Load rates, plase wait...!!!";            
+            //  _resultReady = "Ready to convert...!!!";
+            _resultReady = Lenguages.TitleReadyConvert;
+            //  _resultLoadRate = "Load rates, plase wait...!!!";
+            _resultLoadRate = Lenguages.TitleLoadRate;
 
             //  ObservableCollection    \\
             Rates = new ObservableCollection<Rate>();
 
             //  Invoca el metodo que hace la carga de tasas (Rates) \\
             LoadRates();
+
+            //  Captura el estatus de la carga de las tasas \\
+            _status = "Nikole A. Herrera V.";
         }
 
         #endregion Constructor
@@ -195,35 +217,61 @@
         {
             try
             {
-                IsRunning = true;
-                IsEnabled = false;
+                //  Invoca el metodo que coloca o define el estatus de los controles    \\
+                StatusControl(true, false, _resultLoadRate, string.Empty);
 
-                Result = _resultLoadRate;
+                //  Invoca el metodo que verifica el estado de la conexion a internet   \\
+                var connection = await apiService.CheckConnection();
+                if(!connection.IsSuccess)
+                {
+                    StatusControl(false, false, connection.Message, string.Empty);
+                    //  await dialogService.ShowMessage(Lenguages.Error, connection.Message, Lenguages.Accept);
+                    //  La linea anterior da error
+                    return;
+                }
 
-                //  Invoca al metodo que genera la carga de las tasas (Rates)   \\
-                var response = await apiService.GetRates();
+                ////  Invoca al metodo que genera la carga de las tasas (Rates)   \\
+                //var response = await apiService.GetRates();
+
+                //if (!response.IsSuccess)
+                //{
+                //    //  Invoca el metodo que coloca o define el estatus de los controles    \\
+                //    StatusControl(false, false, string.Empty, string.Empty);
+                //    await dialogService.ShowMessage(Lenguages.Error, response.Message, Lenguages.Accept);
+                //    return;
+                //}
+
+                //  Invoca al metodo generico que genera el objeto para la carga de las tasas (Rates)   \\
+                var response = await apiService.GetList<Rate>("http://apiexchangerates.azurewebsites.net", "/api/Rates");
 
                 if (!response.IsSuccess)
                 {
-                    IsRunning = false;
-                    IsEnabled = false;
-                    Result = null;
+                    //  Invoca el metodo que coloca o define el estatus de los controles    \\
+                    StatusControl(false, false, string.Empty, string.Empty);
                     await dialogService.ShowMessage(Lenguages.Error, response.Message, Lenguages.Accept);
                     return;
                 }
 
                 //  Invoca al metodo que hace la carga de datos de las tasas (Rates)    \\
                 ReloadRates((List<Rate>)response.Result);
-                Result = _resultReady;
-                IsRunning = false;
-                IsEnabled = true;
+
+                //  Invoca el metodo que coloca o define el estatus de los controles    \\
+                StatusControl(false, true, _resultReady, Lenguages.TitleStatusInternet);
             }
             catch (Exception ex)
             {
-                IsEnabled = false;
-                IsRunning = false;
+                //  Invoca el metodo que coloca o define el estatus de los controles    \\
+                StatusControl(false, false, string.Empty, string.Empty);
                 await dialogService.ShowMessage(Lenguages.Error, ex.Message.ToString().Trim(), Lenguages.Accept);
             }
+        }
+
+        private void StatusControl(bool isRunning, bool isEnabled, string result, string status)
+        {
+            IsRunning = isRunning;
+            IsEnabled = isEnabled;
+            Result = result;
+            Status = status;
         }
 
         private void ReloadRates(List<Rate> rates)
@@ -275,7 +323,9 @@
 
                 //   Genera el calculo de la tasa   \\
                 var result = (amount / (decimal)SourceRate.TaxRate) * (decimal)TargetRate.TaxRate;
-                Result = string.Format("The amount: {0:N2} in {1} is equal to {2:N2} in {3}", amount, SourceRate.Name, result, TargetRate.Name);
+                Result = string.Format("{0} {1:N2} {2} {3} {4} {5:N2} {6} {7}",
+                    Lenguages.TitleTheAmount, amount, Lenguages.TitleIn, SourceRate.Name, Lenguages.TitleIsEqual, result,
+                    Lenguages.TitleIn, TargetRate.Name);
             }
             catch (Exception ex)
             {
